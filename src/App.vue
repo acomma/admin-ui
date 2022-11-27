@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { NButton } from "naive-ui";
+import Layout from "./layout/index.vue";
 </script>
 
 <template>
-  <n-button type="primary">naive-ui</n-button>
+  <Layout />
 </template>
 
 <style scoped>
+
 </style>
