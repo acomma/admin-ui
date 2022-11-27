@@ -18,3 +18,5 @@ You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/
 ## 构建过程
 
 使用 `pnpm create vite` 创建项目。
+
+Icon 来源 [https://www.iconfinder.com/icons/3316547/animal_duck_ducks_pato_icon](https://www.iconfinder.com/icons/3316547/animal_duck_ducks_pato_icon)。
