@@ -1,28 +1,69 @@
 <script setup lang="ts">
-import { NForm, NFormItem, NInput, NButton, NIcon } from 'naive-ui'
+import { NForm, NFormItem, NInput, NButton, NIcon, FormValidationError, useMessage } from 'naive-ui'
 import { PersonOutline, LockClosedOutline } from '@vicons/ionicons5'
+import { ref, reactive } from 'vue'
+import axios from 'axios'
+import { useRouter } from 'vue-router'
+
+const message = useMessage()
+const router = useRouter()
+const formRef = ref()
+
+const model = reactive({
+    username: null,
+    password: null,
+})
+
+const rules = {
+    username: { required: true, message: '请输入用户名', trigger: 'blur' },
+    password: { required: true, message: '请输入密码', trigger: 'blur' },
+}
+
+const handleLogin = (e: MouseEvent) => {
+    e.preventDefault()
+    formRef.value?.validate((errors: Array<FormValidationError>) => {
+        if (!errors) {
+            const { username, password } = model;
+            const params = {
+                username,
+                password,
+            }
+            axios.post("http://127.0.0.1:8080/user/login", params)
+                .then((response) => {
+                    const { code: errorCode, message: errorMessage } = response.data
+                    if (errorCode !== 0) {
+                        message.error(errorMessage || '登录失败')
+                    } else {
+                        const { data: { token: token } } = response.data
+                        localStorage.setItem('token', token)
+                        router.replace('/')
+                    }
+                })
+        }
+    })
+}
 </script>
 
 <template>
     <div class="login">
         <div class="container">
-            <n-form label-placement="left">
-                <n-form-item>
-                    <n-input placeholder="请输入用户名">
+            <n-form ref="formRef" :model="model" :rules="rules" label-placement="left">
+                <n-form-item path="username">
+                    <n-input v-model:value="model.username" placeholder="请输入用户名">
                         <template #prefix>
                             <n-icon :component="PersonOutline" />
                         </template>
                     </n-input>
                 </n-form-item>
-                <n-form-item>
-                    <n-input placeholder="请输入密码">
+                <n-form-item path="password">
+                    <n-input v-model:value="model.password" placeholder="请输入密码">
                         <template #prefix>
                             <n-icon :component="LockClosedOutline" />
                         </template>
                     </n-input>
                 </n-form-item>
                 <n-form-item>
-                    <n-button type="primary" block>登录</n-button>
+                    <n-button type="primary" block @click="handleLogin">登录</n-button>
                 </n-form-item>
             </n-form>
         </div>
