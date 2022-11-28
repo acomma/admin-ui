@@ -43,7 +43,7 @@ const menuOptions = [
                     RouterLink,
                     {
                         to: {
-                            path: '/role'
+                            path: '/user'
                         }
                     },
                     { default: () => '用户管理' }
