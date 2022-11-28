@@ -12,7 +12,8 @@
     "@vicons/ionicons5": "^0.12.0",
     "naive-ui": "^2.34.2",
     "vfonts": "^0.0.3",
-    "vue": "^3.2.41"
+    "vue": "^3.2.41",
+    "vue-router": "4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.2.0",

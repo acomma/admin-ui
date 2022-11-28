@@ -2,6 +2,7 @@
 import { h, defineComponent, ref, Component } from 'vue'
 import { NLayout, NLayoutSider, NLayoutHeader, NLayoutContent, NMenu, NIcon, NAvatar } from "naive-ui"
 import { SettingsOutline as SettingsIcon } from '@vicons/ionicons5'
+import { RouterLink } from 'vue-router'
 
 function renderIcon(icon: Component) {
     return () => h(NIcon, null, { default: () => h(icon) })
@@ -14,19 +15,51 @@ const menuOptions = [
         icon: renderIcon(SettingsIcon),
         children: [
             {
-                label: '菜单管理',
+                label: () => h(
+                    RouterLink,
+                    {
+                        to: {
+                            path: '/menu'
+                        }
+                    },
+                    { default: () => '菜单管理' }
+                ),
                 key: 'menu'
             },
             {
-                label: '角色管理',
+                label: () => h(
+                    RouterLink,
+                    {
+                        to: {
+                            path: '/role'
+                        }
+                    },
+                    { default: () => '角色管理' }
+                ),
                 key: 'role'
             },
             {
-                label: '用户管理',
+                label: () => h(
+                    RouterLink,
+                    {
+                        to: {
+                            path: '/role'
+                        }
+                    },
+                    { default: () => '用户管理' }
+                ),
                 key: 'user'
             },
             {
-                label: '操作管理',
+                label: () => h(
+                    RouterLink,
+                    {
+                        to: {
+                            path: '/menu/action'
+                        }
+                    },
+                    { default: () => '菜单操作' }
+                ),
                 key: 'menu-action'
             }
         ]
@@ -48,7 +81,9 @@ const menuOptions = [
                     <n-avatar round src="../duck.svg" />
                 </div>
             </n-layout-header>
-            <n-layout-content class="content"></n-layout-content>
+            <n-layout-content class="content">
+                <router-view></router-view>
+            </n-layout-content>
         </n-layout>
     </n-layout>
 </template>
