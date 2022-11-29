@@ -28,7 +28,7 @@ const handleLogin = (e: MouseEvent) => {
                 username,
                 password,
             }
-            axios.post("http://127.0.0.1:8080/user/login", params)
+            axios.post("/user/login", params)
                 .then((response) => {
                     const { code: errorCode, message: errorMessage } = response.data
                     if (errorCode !== 0) {

@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import { h, defineComponent, ref, Component } from 'vue'
-import { NLayout, NLayoutSider, NLayoutHeader, NLayoutContent, NMenu, NIcon, NAvatar } from "naive-ui"
-import { SettingsOutline as SettingsIcon } from '@vicons/ionicons5'
+import { NLayout, NLayoutSider, NLayoutHeader, NLayoutContent, NMenu, NIcon, NAvatar, NDropdown } from "naive-ui"
+import { SettingsOutline as SettingsIcon, LogOutOutline as LogoutIcon } from '@vicons/ionicons5'
 import { RouterLink } from 'vue-router'
+import axios from 'axios'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 function renderIcon(icon: Component) {
     return () => h(NIcon, null, { default: () => h(icon) })
@@ -65,6 +69,28 @@ const menuOptions = [
         ]
     }
 ]
+
+const avatarOptions = [
+    {
+        label: '退出登录',
+        key: 'logout',
+        icon: renderIcon(LogoutIcon)
+    }
+]
+
+const handleAvatarOptionSelect = (key: string | number) => {
+    if (key === 'logout') {
+        doLogout()
+    }
+}
+
+const doLogout = () => {
+    axios.post("/user/logout", {})
+        .then((response) => {
+            localStorage.removeItem('token')
+            router.replace({ path: '/login' })
+        })
+}
 </script>
 
 <template>
@@ -78,7 +104,9 @@ const menuOptions = [
             <n-layout-header bordered class="header">
                 <div class="left"></div>
                 <div class="right">
-                    <n-avatar round src="../duck.svg" />
+                    <n-dropdown :options="avatarOptions" @select="handleAvatarOptionSelect">
+                        <n-avatar round src="../duck.svg" />
+                    </n-dropdown>
                 </div>
             </n-layout-header>
             <n-layout-content class="content">
