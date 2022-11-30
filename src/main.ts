@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://localhost:8080';
+axios.defaults.baseURL = '/api';
 axios.interceptors.request.use((config) => {
     if (config && config.headers) {
         const token = localStorage.getItem('token')
