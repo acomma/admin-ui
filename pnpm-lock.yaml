@@ -5,6 +5,7 @@ specifiers:
   '@vitejs/plugin-vue': ^3.2.0
   axios: ^1.2.0
   naive-ui: ^2.34.2
+  pinia: ^2.0.27
   typescript: ^4.6.4
   vfonts: ^0.0.3
   vite: ^3.2.3
@@ -16,6 +17,7 @@ dependencies:
   '@vicons/ionicons5': 0.12.0
   axios: 1.2.0
   naive-ui: 2.34.2_vue@3.2.45
+  pinia: 2.0.27_mgnvym7yiazkylwwogi5r767ue
   vfonts: 0.0.3
   vue: 3.2.45
   vue-router: 4.1.6_vue@3.2.45
@@ -660,6 +662,24 @@ packages:
   /picocolors/1.0.0:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
 
+  /pinia/2.0.27_mgnvym7yiazkylwwogi5r767ue:
+    resolution: {integrity: sha512-nOnXP0OFeL8R4WjAHsterU+11vptda643gH02xKNtSCDPiRzVfRYodOLihLDoa0gL1KKuQKV+KOzEgdt3YvqEw==}
+    peerDependencies:
+      '@vue/composition-api': ^1.4.0
+      typescript: '>=4.4.4'
+      vue: ^2.6.14 || ^3.2.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+      typescript:
+        optional: true
+    dependencies:
+      '@vue/devtools-api': 6.4.5
+      typescript: 4.9.3
+      vue: 3.2.45
+      vue-demi: 0.13.11_vue@3.2.45
+    dev: false
+
   /postcss/8.4.19:
     resolution: {integrity: sha512-h+pbPsyhlYj6N2ozBmHhHrs9DzGmbaarbLvWipMRO7RLS+v4onj26MPFXA5OBYFxyqYhUJK456SwDcY9H2/zsA==}
     engines: {node: ^10 || ^12 || >=14}
@@ -721,7 +741,6 @@ packages:
     resolution: {integrity: sha512-CIfGzTelbKNEnLpLdGFgdyKhG23CKdKgQPOBc+OUNrkJ2vr+KSzsSV5kq5iWhEQbok+quxgGzrAtGWCyU7tHnA==}
     engines: {node: '>=4.2.0'}
     hasBin: true
-    dev: true
 
   /vdirs/0.1.8_vue@3.2.45:
     resolution: {integrity: sha512-H9V1zGRLQZg9b+GdMk8MXDN2Lva0zx72MPahDKc30v+DtwKjfyOSXWRIX4t2mhDubM1H09gPhWeth/BJWPHGUw==}
@@ -775,6 +794,21 @@ packages:
       vue: ^3.0.0
     dependencies:
       evtd: 0.2.4
+      vue: 3.2.45
+    dev: false
+
+  /vue-demi/0.13.11_vue@3.2.45:
+    resolution: {integrity: sha512-IR8HoEEGM65YY3ZJYAjMlKygDQn25D5ajNFNoKh9RSDMQtlzCxtfQjdQgv9jjK+m3377SsJXY8ysq8kLCZL25A==}
+    engines: {node: '>=12'}
+    hasBin: true
+    requiresBuild: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^3.0.0-0 || ^2.6.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
       vue: 3.2.45
     dev: false
 

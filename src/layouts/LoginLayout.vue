@@ -4,7 +4,9 @@ import { PersonOutline, LockClosedOutline } from '@vicons/ionicons5'
 import { ref, reactive } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
+import { useLoginUserStore } from '../store/login-user'
 
+const loginUserStore = useLoginUserStore()
 const message = useMessage()
 const router = useRouter()
 const formRef = ref()
@@ -34,8 +36,9 @@ const handleLogin = (e: MouseEvent) => {
                     if (errorCode !== 0) {
                         message.error(errorMessage || '登录失败')
                     } else {
-                        const { data: { token: token } } = response.data
-                        localStorage.setItem('token', token)
+                        const { data: { token: token, userId: userId } } = response.data
+                        loginUserStore.setToken(token)
+                        loginUserStore.setUserId(userId)
                         router.replace('/')
                     }
                 })

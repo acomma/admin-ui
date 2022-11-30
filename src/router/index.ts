@@ -5,6 +5,7 @@ import MenuAction from "../views/menu-action/index.vue";
 import BasicLayout from "../layouts/BasicLayout.vue"
 import LoginLayout from "../layouts/LoginLayout.vue"
 import { createRouter, createWebHashHistory } from 'vue-router'
+import { useLoginUserStore } from "../store/login-user";
 
 const routes = [
     {
@@ -44,7 +45,8 @@ router.beforeEach((to, from, next) => {
     if (to.path === '/login') {
         next()
     } else {
-        const token = localStorage.getItem('token')
+        const loginUserStore = useLoginUserStore()
+        const token = loginUserStore.getToken
         if (token) {
             next()
         } else {

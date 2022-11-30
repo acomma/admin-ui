@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import axios from 'axios'
+import store from './store'
 
 axios.defaults.baseURL = '/api';
 axios.interceptors.request.use((config) => {
@@ -14,4 +15,4 @@ axios.interceptors.request.use((config) => {
     return Promise.reject(error)
 });
 
-createApp(App).use(router).mount('#app')
+createApp(App).use(store).use(router).mount('#app')
