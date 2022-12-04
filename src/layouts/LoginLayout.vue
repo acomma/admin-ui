@@ -30,7 +30,7 @@ const handleLogin = (e: MouseEvent) => {
                 username,
                 password,
             }
-            axios.post("/user/login", params)
+            axios.post("/auth/login", params)
                 .then((response) => {
                     const { code: errorCode, message: errorMessage } = response.data
                     if (errorCode !== 0) {

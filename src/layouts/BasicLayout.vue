@@ -85,7 +85,7 @@ const handleAvatarOptionSelect = (key: string | number) => {
 }
 
 const doLogout = () => {
-    axios.post("/user/logout", {})
+    axios.post("/auth/logout", {})
         .then((response) => {
             localStorage.removeItem('token')
             router.replace({ path: '/login' })
